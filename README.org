@@ -4,6 +4,13 @@ This repository contains my solutions to Exercism problems.
 It's organized by language track,
 the way the [[http://exercism.io/clients/cli][Exercism CLI]] sets it up.
 
+* Language tracks
+
+These are the tracks I've worked on,
+in the order I started them.
+
+1. [[file:elisp/README.org][Emacs Lisp]]
+
 * Git hygiene
 
 I may be a bit obsessive,
