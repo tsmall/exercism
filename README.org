@@ -1,0 +1,51 @@
+#+TITLE: Tom Small's Exercism Solutions
+
+This repository contains my solutions to Exercism problems.
+It's organized by language track,
+the way the [[http://exercism.io/clients/cli][Exercism CLI]] sets it up.
+
+* Git hygiene
+
+I may be a bit obsessive,
+but I think a consistent git history is important.
+It helps the reader,
+removes the need to decide how to format each commit,
+and makes automated analysis possible.
+
+I'm using this format for this repository:
+
+#+BEGIN_EXAMPLE
+<area>: <change>
+<optional line break>
+<optional description>
+#+END_EXAMPLE
+
+Here's what the different pieces mean:
+
+- =<area>= ::
+  The part of the code changed.
+  This should be the language for changes to a solution.
+  But it could also be =admin= for repository administration --
+  like reorganization or changes to =.gitignore= files --
+  or =docs= for documentation updates.
+
+- =<change>= ::
+  A short description of the change.
+  The first line,
+  including the area,
+  should be fewer than 72 characters long.
+
+- =<optional line break>= ::
+  If the commit would be more helpful with a longer description,
+  separate the first line from the description
+  with a single blank line.
+
+- =<optional description>= ::
+  This can be one or more paragraphs
+  containing additional details
+  about the commit.
+  Not every commit will need this;
+  in fact, most probably won't.
+  Commits should be small,
+  so the first line should usually be enough.
+  Only add more where it makes the commit message more helpful.
