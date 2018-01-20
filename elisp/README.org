@@ -1,0 +1,34 @@
+#+TITLE: Emacs Lisp
+
+This directory contains the solutions to Emacs Lisp problems.
+I started with this track because I use Emacs every day,
+for many different kinds of tasks.
+I have written a decent amount of Emacs Lisp code
+but I can always improve.
+
+See [[http://exercism.io/languages/elisp/about][the Exercism Emacs Lisp page]] for details about this track.
+
+* Working on exercises
+
+Since Emacs is itself an Emacs Lisp interpreter,
+developing Emacs Lisp code is a wonderful, interactive experience.
+
+1. Open the test file and source file side by side.
+2. Edit the source file.
+3. Use the eval commands (like ~C-M-x~ or ~M-x eval-buffer~) to evaluate the buffer.
+4. Run the tests with ~M-x ert RET test-name RET~ or ~M-x ert RET t RET~.
+5. Go back to step 2 until your code is done.
+
+* Running tests in batch
+
+Emacs provides a batch mode
+to run Emacs Lisp code from the terminal
+without rendering the Emacs UI.
+The command to do that is rather long,
+so I've encapsulated it in the =ert-run= script.
+Use it like this:
+
+#+BEGIN_EXAMPLE
+$ cd hello-world
+$ ../ert-run hello-world-test.el
+#+END_EXAMPLE
