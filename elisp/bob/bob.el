@@ -9,7 +9,7 @@
   "Returns t if STR consists of only uppercase letters."
   (let ((case-fold-search nil))
     (let ((has-letter (string-match-p "[[:upper:]]" str))
-          (all-upper (string-match-p "\\`[[:upper:][:punct:][:digit:][:space:]]+\\'" str)))
+          (all-upper (string= (upcase str) str)))
       (and has-letter all-upper))))
 
 (defun string-empty-or-blank-p (str)
