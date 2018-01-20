@@ -21,7 +21,6 @@
   "Determines and returns Bob's response to MESSAGE."
   (cond ((string-capitalized-p message) "Whoa, chill out!")
         ((string-empty-or-blank-p message) "Fine. Be that way!")
-        ((string-suffix-p "!" message) "Whatever.")
         ((string-suffix-p "?" message) "Sure.")
         (t "Whatever.")))
 
