@@ -32,3 +32,36 @@ Use it like this:
 $ cd hello-world
 $ ../ert-run hello-world-test.el
 #+END_EXAMPLE
+
+* Cleaning up after yourself
+
+I like to keep Emacs open for a long time.
+As I work through these exercises
+I'll start to accumulate a lot of functions.
+I may not want to have old solutions
+or their tests
+in memory as I work on new solutions.
+
+To remove functions I defined while working on the solutions,
+use the ~fmakunbound~ function:
+
+#+BEGIN_SRC elisp
+  (fmakunbound 'function-name)
+#+END_SRC
+
+To remove variables,
+use the ~makunbound~ function:
+
+#+BEGIN_SRC elisp
+  (makunbound 'variable-name)
+#+END_SRC
+
+Tests defined with ert are deleted differently,
+using the ~ert-delete-test~ function:
+
+#+BEGIN_SRC elisp
+  (ert-delete-test 'test-name)
+#+END_SRC
+
+Or if you just want to delete all of them,
+use ~ert-delete-all-tests~.
