@@ -1,0 +1,8 @@
+defpackage helloworld :
+    import core
+
+public defn hello () -> String :
+    ""
+
+public defn hello (name:String) -> String :
+    ""

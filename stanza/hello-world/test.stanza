@@ -1,0 +1,12 @@
+defpackage helloworld/test :
+    import core
+    import taptests
+    import helloworld
+
+val tests = TestSuite()
+
+eq(tests, hello(), "Hello, World!")
+eq(tests, hello("Stanza"), "Hello, Stanza!")
+eq(tests, hello("Exercism"), "Hello, Exercism!")
+
+run-all(tests)
