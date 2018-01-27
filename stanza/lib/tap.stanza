@@ -1,3 +1,10 @@
+;; tap.stanza -- TAP test runner for L.B. Stanza
+;;
+;; This package implements a basic automated test runner.
+;; It outputs results in the Test Anything Protocol (TAP),
+;; documented at https://testanything.org.
+;; It's heavily inspired by Perl's Test::More package.
+
 defpackage taptests :
     import core
     import collections
