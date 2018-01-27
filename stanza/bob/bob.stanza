@@ -1,0 +1,5 @@
+defpackage bob :
+    import core
+
+public defn response-for (message:String) -> String :
+    ""
