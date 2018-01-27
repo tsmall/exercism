@@ -2,7 +2,7 @@ defpackage helloworld :
     import core
 
 public defn hello () -> String :
-    ""
+    "Hello, World!"
 
 public defn hello (name:String) -> String :
-    ""
+    append-all(["Hello, ", name, "!"])
