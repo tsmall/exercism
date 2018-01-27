@@ -1,5 +1,22 @@
 defpackage bob :
     import core
 
+defn whitespace? (c:Char) :
+    c == ' ' or c == '\t'
+
+defn blank? (s:String) :
+    empty?(s) or all?(whitespace?, s)
+
+defn question? (s:String) :
+    suffix?(s, "?")
+
+defn shout? (s:String) :
+    val letters = filter(letter?, s)
+    not empty?(letters) and all?(upper-case?, letters)
+
 public defn response-for (message:String) -> String :
-    ""
+    switch {_(message)} :
+        blank? : "Fine. Be that way!"
+        shout? : "Whoa, chill out!"
+        question? : "Sure."
+        else : "Whatever."
