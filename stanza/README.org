@@ -1,0 +1,28 @@
+#+TITLE: L.B. Stanza
+
+This directory contains solutions to problems written in L.B. Stanza.
+This isn't a real Exercism track;
+I'm implementing both the tests and solutions to other problems.
+But I think Stanza is a fascinating language
+and I wanted some problems to try it on.
+
+* Working on exercises
+
+Unfortunately I don't know of any editors with Stanza support.
+(Maybe I'll create one.)
+So just use your editor of choice.
+
+Stanza is a compiled language.
+So your work pattern will follow the typical
+edit, compile, and run pattern.
+
+* Running tests
+
+Each exercise has a ~Makefile~
+set up to build and run the tests.
+To run the tests navigate to the exercise directory
+and run:
+
+#+BEGIN_EXAMPLE
+  $ make
+#+END_EXAMPLE
