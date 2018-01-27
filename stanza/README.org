@@ -1,6 +1,6 @@
 #+TITLE: L.B. Stanza
 
-This directory contains solutions to problems written in L.B. Stanza.
+This directory contains solutions to problems written in [[http://lbstanza.org/][L.B. Stanza]].
 This isn't a real Exercism track;
 I'm implementing both the tests and solutions to other problems.
 But I think Stanza is a fascinating language
