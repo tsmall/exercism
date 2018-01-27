@@ -6,6 +6,11 @@ public deftype Test
 public defmulti passed (t:Test) -> True|False
 public defmulti has-description? (t:Test) -> True|False
 public defmulti description (t:Test) -> String
+public defmulti has-diagnostics? (t:Test) -> True|False
+public defmulti diagnostics (t:Test) -> Printable
+
+public defn failed (t:Test) -> True|False :
+    not passed(t)
 
 public deftype TestSuite
 public defmulti add (suite:TestSuite, test:Test)
@@ -19,30 +24,32 @@ public defn TestSuite () -> TestSuite :
         defmethod run-all (this:TestSuite) :
             println("1..%_" % [length(tests)])
             for (test in tests, i in 1 to false) do :
-                val message =
-                    if passed(test) :
-                        "ok %_" % [i]
-                    else :
-                        "not ok %_" % [i]
-                if has-description?(test) :
-                    println("%_ - %_" % [message, description(test)])
-                else :
-                    println(message)
+                println $ message-for(test, i)
+                if failed(test) and has-diagnostics?(test) :
+                    do(println, diagnostics-for(test))
+
+defn message-for (t:Test, i:Int) -> Printable :
+    val message =
+        if passed(t) :
+            "ok %_" % [i]
+        else :
+            "not ok %_" % [i]
+    if has-description?(t) :
+        "%_ - %_" % [message, description(t)]
+    else :
+        message
+
+defn diagnostics-for (t:Test) -> Seq<Printable> :
+    val lines = split(to-string(diagnostics(t)), "\n")
+    for line in lines seq :
+        "# %_" % [line]
 
 deftype EqualityTest <: Test
 defmulti actual (t:EqualityTest) -> Equalable
 defmulti expected (t:EqualityTest) -> Equalable
 
 defn EqualityTest (actual:Equalable, expected:Equalable) -> EqualityTest :
-    new EqualityTest :
-        defmethod actual (this) :
-            actual
-        defmethod expected (this) :
-            expected
-        defmethod has-description? (this) :
-            false
-        defmethod description (this) :
-            ""
+    EqualityTest(actual, expected, "")
 
 defn EqualityTest (actual:Equalable, expected:Equalable, description:String) -> EqualityTest :
     new EqualityTest :
@@ -51,9 +58,13 @@ defn EqualityTest (actual:Equalable, expected:Equalable, description:String) -> 
         defmethod expected (this) :
             expected
         defmethod has-description? (this) :
-            true
+            description != ""
         defmethod description (this) :
             description
+        defmethod has-diagnostics? (this) :
+            true
+        defmethod diagnostics (this) :
+            "Expected: %_\nGot: %_" % [expected, actual]
 
 defmethod passed (t:EqualityTest) -> True|False :
     actual(t) == expected(t)
