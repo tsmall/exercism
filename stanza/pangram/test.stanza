@@ -1,0 +1,20 @@
+defpackage pangram/test :
+    import core
+    import taptests
+    import pangram
+
+val tests = TestSuite()
+
+ok(tests, not pangram?(""),                                                            "empty sentence")
+ok(tests, pangram?("abcdefghijklmnopqrstuvwxyz"),                                      "perfect lower-case pangram")
+ok(tests, pangram?("the quick brown fox jumps over the lazy dog"),                     "well-known pangram")
+ok(tests, pangram?("The quick brown fox jumps over the lazy dog."),                    "well-known pangram, as a sentence")
+ok(tests, not pangram?("a quick movement of the enemy will jeopardize five gunboats"), "missing an 'x'")
+ok(tests, not pangram?("five boxing wizards jump quickly at it"),                      "missing an 'h'")
+ok(tests, pangram?("the_quick_brown_fox_jumps_over_the_lazy_dog"),                     "pangram with underscores")
+ok(tests, pangram?("the 1 quick brown fox jumps over the 2 lazy dogs"),                "pangram with numbers")
+ok(tests, not pangram?("7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog"),                 "1337sp34k pangram")
+ok(tests, pangram?("\"Five quacking Zephyrs jolt my wax bed.\""),                      "pangram w/ capitals and punctuation")
+ok(tests, not pangram?("the quick brown fox jumps over with lazy FX"),                 "don't count upper- and lowercase separately")
+
+run-all(tests)
