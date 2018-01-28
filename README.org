@@ -9,8 +9,8 @@ the way the [[http://exercism.io/clients/cli][Exercism CLI]] sets it up.
 These are the tracks I've worked on,
 in the order I started them.
 
-1. [[file:elisp/README.org][Emacs Lisp]]
-2. [[file:stanza/README.org][L.B. Stanza]] (not an actual Exercism track ... yet)
+1. [[file:elisp/][Emacs Lisp]]
+2. [[file:stanza/][L.B. Stanza]] (not an actual Exercism track ... yet)
 
 * Git hygiene
 
