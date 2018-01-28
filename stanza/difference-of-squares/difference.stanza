@@ -1,11 +1,14 @@
 defpackage difference :
     import core
 
+defn square (n:Int) -> Int :
+    n * n
+
 public defn square-of-sums (upto:Int) -> Int :
-    0
+    square $ sum(1 through upto)
 
 public defn sum-of-squares (upto:Int) -> Int :
-    0
+    sum $ map(square, 1 through upto)
 
 public defn difference (upto:Int) -> Int :
-    0
+    square-of-sums(upto) - sum-of-squares(upto)
