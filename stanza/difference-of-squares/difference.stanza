@@ -1,0 +1,11 @@
+defpackage difference :
+    import core
+
+public defn square-of-sums (upto:Int) -> Int :
+    0
+
+public defn sum-of-squares (upto:Int) -> Int :
+    0
+
+public defn difference (upto:Int) -> Int :
+    0
