@@ -1,5 +1,10 @@
 defpackage pangram :
     import core
 
+val alphabet =
+    "abcdefghijklmnopqrstuvwxyz"
+
 public defn pangram? (word:String) -> True|False :
-    false
+    val lower-case-word = lower-case(word)
+    for letter in alphabet all? :
+        contains?(lower-case-word, letter)
