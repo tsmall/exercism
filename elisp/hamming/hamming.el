@@ -8,8 +8,8 @@
 
 (defun hamming-distance (strand-a strand-b)
   "Calculate the Hamming distance between two DNA strands."
-  (if (not (= (length strand-a) (length strand-b)))
-      (error "Strands must be the same length"))
+  (unless (= (length strand-a) (length strand-b))
+    (error "Strands must be the same length"))
   (cl-loop for a across strand-a
            for b across strand-b
            count (not (char-equal a b))))
