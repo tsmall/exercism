@@ -1,5 +1,18 @@
 defpackage hamming :
     import core
 
+defstruct MismatchedStrands <: Exception :
+    strand-a: String
+    strand-b: String
+
+defmethod print (o:OutputStream, e:MismatchedStrands) :
+    val message = "Strand \"%_\" and strand \"%_\" have different lengths."
+    print(o, message % [strand-a(e), strand-b(e)])
+
 public defn hamming-distance (strand-a:String, strand-b:String) -> Int :
-    -1
+    if count(strand-a) != count(strand-b) :
+        throw(MismatchedStrands(strand-a, strand-b))
+    val mismatches =
+        for (a in strand-a, b in strand-b) filter :
+            a != b
+    count(mismatches)
