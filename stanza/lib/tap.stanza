@@ -9,6 +9,9 @@ defpackage taptests :
     import core
     import collections
 
+;; -----------------------------------------------------------------------------
+;; Test type
+
 public deftype Test
 public defmulti passed (t:Test) -> True|False
 public defmulti has-description? (t:Test) -> True|False
@@ -18,6 +21,9 @@ public defmulti diagnostics (t:Test) -> Printable
 
 public defn failed (t:Test) -> True|False :
     not passed(t)
+
+;; -----------------------------------------------------------------------------
+;; Test suites
 
 public deftype TestSuite
 public defmulti add (suite:TestSuite, test:Test)
@@ -50,6 +56,9 @@ defn diagnostics-for (t:Test) -> Seq<Printable> :
     val lines = split(to-string(diagnostics(t)), "\n")
     for line in lines seq :
         "# %_" % [line]
+
+;; -----------------------------------------------------------------------------
+;; Equality tests
 
 deftype EqualityTest <: Test
 defmulti actual (t:EqualityTest) -> Equalable
