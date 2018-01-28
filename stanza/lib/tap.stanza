@@ -17,7 +17,7 @@ public defmulti passed (t:Test) -> True|False
 public defmulti has-description? (t:Test) -> True|False
 public defmulti description (t:Test) -> String
 public defmulti has-diagnostics? (t:Test) -> True|False
-public defmulti diagnostics (t:Test) -> Printable
+public defmulti diagnostics (t:Test) -> Printable|String
 
 public defn failed (t:Test) -> True|False :
     not passed(t)
@@ -90,3 +90,28 @@ public defn eq (suite:TestSuite, actual:Equalable, expected:Equalable) :
 
 public defn eq (suite:TestSuite, actual:Equalable, expected:Equalable, description:String) :
     add(suite, EqualityTest(actual, expected, description))
+
+;; -----------------------------------------------------------------------------
+;; Exception tests
+
+deftype ExceptionTest <: Test
+
+defn ExceptionTest (thunk: () -> ?, description: String) -> ExceptionTest :
+    new ExceptionTest :
+        defmethod passed (this) :
+            try :
+                thunk()
+                false
+            catch (e:Exception) :
+                true
+        defmethod has-description? (this) :
+            true
+        defmethod description (this) :
+            description
+        defmethod has-diagnostics? (this) :
+            true
+        defmethod diagnostics (this) :
+            "Expected exception but none thrown"
+
+public defn throws (suite: TestSuite, thunk: () -> ?, description: String) :
+    add(suite, ExceptionTest(thunk, description))
