@@ -15,7 +15,7 @@
       (string-to-list)
       (sort '<)))
 
-(defun anagram? (word candidate)
+(defun anagram-p (word candidate)
   "Returns `t' if CANDIDATE is an anagram of WORD, `nil' otherwise."
   (if (string= word candidate)
       nil
@@ -24,7 +24,7 @@
 
 (defun anagrams-for (word candidates)
   "Returns the words in list CANDIDATES that are anagrams of WORD."
-  (cl-remove-if-not (apply-partially 'anagram? word) candidates))
+  (cl-remove-if-not (apply-partially 'anagram-p word) candidates))
 
 (provide 'anagram)
 ;;; anagram.el ends here
