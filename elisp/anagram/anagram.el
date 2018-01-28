@@ -12,8 +12,7 @@
   "Returns a list containing the sorted, lowercase characters in STRING."
   (-> string
       (downcase)
-      (split-string "" t)
-      (->> (mapcar 'string-to-char))
+      (string-to-list)
       (sort '<)))
 
 (defun anagram? (word candidate)
