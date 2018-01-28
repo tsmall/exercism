@@ -58,6 +58,27 @@ defn diagnostics-for (t:Test) -> Seq<Printable> :
         "# %_" % [line]
 
 ;; -----------------------------------------------------------------------------
+;; Simple "ok" tests
+
+deftype OkTest <: Test
+
+defn OkTest (result:True|False, description:String) -> OkTest :
+    new OkTest :
+        defmethod passed (this) :
+            result
+        defmethod has-description? (this) :
+            not empty?(description)
+        defmethod description (this) :
+            description
+        defmethod has-diagnostics? (this) :
+            false
+        defmethod diagnostics (this) :
+            ""
+
+public defn ok (suite:TestSuite, result:True|False, description:String) :
+    add(suite, OkTest(result, description))
+
+;; -----------------------------------------------------------------------------
 ;; Equality tests
 
 deftype EqualityTest <: Test
