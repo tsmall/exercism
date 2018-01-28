@@ -1,0 +1,5 @@
+defpackage hamming :
+    import core
+
+public defn hamming-distance (strand-a:String, strand-b:String) -> Int :
+    -1
