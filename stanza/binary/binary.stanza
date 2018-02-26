@@ -1,5 +1,22 @@
 defpackage binary :
     import core
 
+defn parse-binary-digit (c:Char) -> Int|False :
+    switch {c == _} :
+        '0' : 0
+        '1' : 1
+        else : false
+
 public defn to-decimal (binary:String) -> Int :
-    -1
+    ;; This follows the algorithm described here:
+    ;; https://en.wikipedia.org/wiki/Binary_number#Decimal
+    var prior = 0
+    label<Int> return :
+        for next-bit in binary do :
+            val bit = parse-binary-digit(next-bit)
+            match(bit) :
+                (i:Int) :
+                    prior = (prior * 2) + i
+                (_:False) :
+                    return(0)
+        return(prior)
