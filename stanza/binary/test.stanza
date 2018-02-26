@@ -1,0 +1,20 @@
+defpackage binary/test :
+    import core
+    import taptests
+    import binary
+
+val tests = TestSuite()
+
+eq(tests, to-decimal("1"), 1, "1 => 1")
+eq(tests, to-decimal("10"), 2, "10 => 2")
+eq(tests, to-decimal("11"), 3, "11 => 3")
+eq(tests, to-decimal("100"), 4, "100 => 4")
+eq(tests, to-decimal("1001"), 9, "1001 => 9")
+eq(tests, to-decimal("11010"), 26, "11010 => 26")
+eq(tests, to-decimal("10001101000"), 1128, "10001101000 => 1128")
+eq(tests, to-decimal("carrot"), 0, "string with characters")
+eq(tests, to-decimal("2"), 0, "string with all invalid numbers")
+eq(tests, to-decimal("102"), 0, "string with an invalid number")
+eq(tests, to-decimal(""), 0, "empty string")
+
+run-all(tests)

@@ -1,0 +1,5 @@
+defpackage binary :
+    import core
+
+public defn to-decimal (binary:String) -> Int :
+    -1
