@@ -1,0 +1,45 @@
+defpackage pangram/test :
+    import core
+    import taptests
+    import allergies
+
+val tests = TestSuite()
+
+ok(tests, not allergic-to?(0, "peanuts"), "0 ∌ peanuts")
+ok(tests, not allergic-to?(0, "cats"), "0 ∌ cats")
+ok(tests, not allergic-to?(0, "strawberries"), "0 ∌ strawberries")
+
+ok(tests, allergic-to?(1, "eggs"), "1 ∋ eggs")
+ok(tests, allergic-to?(5, "eggs"), "5 ∋ eggs")
+
+eq(tests, allergen-list(0), to-list([]), "No allergies at all")
+eq(tests, allergen-list(1), to-list(["eggs"]), "Allergic to just eggs")
+eq(tests, allergen-list(2), to-list(["peanuts"]), "Allergic to just peanuts")
+eq(tests, allergen-list(8), to-list(["strawberries"]), "Allergic to just strawberries")
+
+eqv(tests,
+    allergen-list(3),
+    to-list(["eggs", "peanuts"]),
+    "Allergic to eggs and peanuts")
+
+eqv(tests,
+    allergen-list(5),
+    to-list(["eggs", "shellfish"]),
+    "Allergic to more than eggs but not peanuts")
+
+eqv(tests,
+    allergen-list(248),
+    to-list(["strawberries", "tomatoes", "chocolate", "pollen", "cats"]),
+    "Allergic to lots of stuff")
+
+eqv(tests,
+    allergen-list(255),
+    to-list(["eggs", "peanuts", "shellfish", "strawberries", "tomatoes", "chocolate", "pollen", "cats"]),
+    "Allergic to everything")
+
+eqv(tests,
+    allergen-list(509),
+    to-list(["eggs", "shellfish", "strawberries", "tomatoes", "chocolate", "pollen", "cats"]),
+    "Ignore non-allergen score parts")
+
+run-all(tests)

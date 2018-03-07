@@ -1,0 +1,8 @@
+defpackage allergies :
+    import core
+
+public defn allergic-to? (score:Int, allergen:String) -> True|False :
+    false
+
+public defn allergen-list (score:Int) -> List<String> :
+    to-list([])
