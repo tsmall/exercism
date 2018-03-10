@@ -113,6 +113,35 @@ public defn eq (suite:TestSuite, actual:Equalable, expected:Equalable, descripti
     add(suite, EqualityTest(actual, expected, description))
 
 ;; -----------------------------------------------------------------------------
+;; Equivalency tests
+
+deftype EquivalencyTest <: Test
+defmulti actual (t:EquivalencyTest) -> Seq<Equalable>
+defmulti expected (t:EquivalencyTest) -> Seq<Equalable>
+
+defn EquivalencyTest (actual:Seqable<Equalable>, expected:Seqable<Equalable>, description:String) -> EquivalencyTest :
+    new EquivalencyTest :
+        defmethod actual (this) :
+            to-seq(actual)
+        defmethod expected (this) :
+            to-seq(expected)
+        defmethod has-description? (this) :
+            description != ""
+        defmethod description (this) :
+            description
+        defmethod has-diagnostics? (this) :
+            true
+        defmethod diagnostics (this) :
+            "Expected: %_\nGot: %_" % [expected, actual]
+
+defmethod passed (t:EquivalencyTest) -> True|False :
+    for each in expected(t) all? :
+        contains?(actual(t), each)
+
+public defn eqv (suite:TestSuite, actual:Seqable<Equalable>, expected:Seqable<Equalable>, description:String) :
+    add(suite, EquivalencyTest(actual, expected, description))
+
+;; -----------------------------------------------------------------------------
 ;; Exception tests
 
 deftype ExceptionTest <: Test
