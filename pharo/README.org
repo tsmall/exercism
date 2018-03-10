@@ -1,0 +1,24 @@
+#+TITLE: Pharo Smalltalk
+
+This directory contains solutions to problems written in [[http://pharo.org][Pharo]].
+This isn't a real Exercism track;
+I'm implementing both the tests and solutions as I go.
+Smalltalk is a fascinating language and environment.
+
+* Working on exercises
+
+I'm "filing out" the tests and solutions to the problems.
+But Pharo is an immersive, image-based environment.
+So the files are just to have a record in my Git repo.
+
+You can "file in" the test and solution objects into your own Pharo image
+to run them.
+
+* Running tests
+
+After importing the objects,
+navigate to the test classes
+and click the icon next to the class name
+to run all the tests.
+(You can also click the icon next to an individual test method
+to run only that test.)
