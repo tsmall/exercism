@@ -1,8 +1,23 @@
 defpackage allergies :
     import core
+    import collections
+
+val known-allergens = HashTable<String, Int>()
+known-allergens["eggs"] = 1
+known-allergens["peanuts"] = 2
+known-allergens["shellfish"] = 4
+known-allergens["strawberries"] = 8
+known-allergens["tomatoes"] = 16
+known-allergens["chocolate"] = 32
+known-allergens["pollen"] = 64
+known-allergens["cats"] = 128
 
 public defn allergic-to? (score:Int, allergen:String) -> True|False :
-    false
+    bit-and(score, known-allergens[allergen]) != 0
 
 public defn allergen-list (score:Int) -> List<String> :
-    to-list([])
+    to-list $ for allergen in keys(known-allergens) seq? :
+        if allergic-to?(score, allergen) :
+            One(allergen)
+        else :
+            None()
