@@ -12,6 +12,7 @@ in the order I started them.
 1. [[file:elisp/][Emacs Lisp]]
 2. [[file:stanza/][L.B. Stanza]] (not an actual Exercism track ... yet)
 3. [[file:pharo/][Pharo Smalltalk]] (also not an actual Exercism track)
+4. [[file:perl6/][Perl 6]]
 
 * Git hygiene
 

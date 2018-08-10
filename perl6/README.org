@@ -1,0 +1,27 @@
+#+TITLE: Perl 6
+
+This directory contains the solutions to my Perl 6 problems.
+I chose to tackle this track because Perl 6 is a fascinating language.
+Many smart people spent a long time designing and building it,
+trying to come up with a language that will last long into the future.
+The Perl community has always been interesting to me,
+with its focus on linguistics and writing.
+Perl 6, as the evolution of that, is very intriguing.
+
+See the [[http://exercism.io/languages/perl6/about][Exercism Perl 6 page]] for details about this track.
+
+* Working on exercises
+
+Perl 6 supports an interactive shell,
+which is useful for testing small snippets of code.
+But I'm essentially following the typical edit, compile, run pattern
+while working on these exercises.
+
+* Running tests
+
+Each problem's readme file explains this in more detail,
+but the essence is this:
+
+#+BEGIN_EXAMPLE
+  $ prove . --exec=perl6
+#+END_EXAMPLE
