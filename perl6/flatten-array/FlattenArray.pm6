@@ -7,8 +7,8 @@ sub flatten-array (@input) is export {
     if $x ~~ List {
       @flattened.append: flatten-array($x);
     }
-    else {
-      @flattened.push($x) if $x.defined;
+    elsif $x.defined {
+      @flattened.push($x);
     }
   }
 
