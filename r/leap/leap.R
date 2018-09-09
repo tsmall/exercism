@@ -1,11 +1,7 @@
 leap <- function(year) {
-  if (year %divisible_by% 400) {
-    return(TRUE)
-  }
-  if (year %divisible_by% 4) {
-    return(! year %divisible_by% 100)
-  }
-  return(FALSE)
+  if (year %divisible_by% 400) TRUE
+  else if (year %divisible_by% 4) !(year %divisible_by% 100)
+  else FALSE
 }
 
 `%divisible_by%` <- function(dividend, divisor) {
