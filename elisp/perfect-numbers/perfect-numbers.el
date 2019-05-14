@@ -12,7 +12,7 @@
 
 (defun factors (number)
   "Returns list of all factors of `NUMBER'."
-  (cl-loop for n from 1 below number
+  (cl-loop for n from 1 to (/ number 2)
            if (factorp number n)
            collect n))
 
