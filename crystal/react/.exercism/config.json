@@ -1,0 +1,22 @@
+{
+  "blurb": "Implement a basic reactive system.",
+  "authors": [
+    "petertseng"
+  ],
+  "contributors": [
+    "amscotti",
+    "issyl0",
+    "mhelmetag"
+  ],
+  "files": {
+    "solution": [
+      "src/react.cr"
+    ],
+    "test": [
+      "spec/react_spec.cr"
+    ],
+    "example": [
+      "src/example.cr"
+    ]
+  }
+}
