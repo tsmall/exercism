@@ -5,6 +5,15 @@ How to play blackjack:    https://bicyclecards.com/how-to-play/blackjack/
 """
 
 
+FACE_CARD_VALUE = 10
+ACE_LOW_VALUE = 1
+ACE_HIGH_VALUE = 11
+
+FACE_CARDS = {'K', 'Q', 'J'}
+
+BUST_POINTS = 21
+
+
 def value_of_card(card):
     """Determine the scoring value of a card.
 
@@ -15,8 +24,13 @@ def value_of_card(card):
     2.  'A' (ace card) = 1
     3.  '2' - '10' = numerical value.
     """
+    if card in FACE_CARDS:
+        return FACE_CARD_VALUE
 
-    pass
+    if card == 'A':
+        return ACE_LOW_VALUE
+
+    return int(card)
 
 
 def higher_card(card_one, card_two):
@@ -29,8 +43,16 @@ def higher_card(card_one, card_two):
     2.  'A' (ace card) = 1
     3.  '2' - '10' = numerical value.
     """
+    card_one_value = value_of_card(card_one)
+    card_two_value = value_of_card(card_two)
 
-    pass
+    if card_one_value > card_two_value:
+        return card_one
+
+    if card_two_value > card_one_value:
+        return card_two
+
+    return (card_one, card_two)
 
 
 def value_of_ace(card_one, card_two):
@@ -43,8 +65,20 @@ def value_of_ace(card_one, card_two):
     2.  'A' (ace card) = 11 (if already in hand)
     3.  '2' - '10' = numerical value.
     """
+    def check_for_ace_in_hand(card_value):
+        if card_value == ACE_LOW_VALUE:
+            return ACE_HIGH_VALUE
 
-    pass
+        return card_value
+
+    card_one_value = value_of_card(card_one)
+    card_two_value = value_of_card(card_two)
+    current_points = check_for_ace_in_hand(card_one_value) + check_for_ace_in_hand(card_two_value)
+
+    if current_points + ACE_HIGH_VALUE > BUST_POINTS:
+        return ACE_LOW_VALUE
+
+    return ACE_HIGH_VALUE
 
 
 def is_blackjack(card_one, card_two):
@@ -57,8 +91,13 @@ def is_blackjack(card_one, card_two):
     2.  'A' (ace card) = 11 (if already in hand)
     3.  '2' - '10' = numerical value.
     """
+    if card_one == 'A':
+        return card_two in FACE_CARDS or card_two == '10'
 
-    pass
+    if card_one in FACE_CARDS or card_one == '10':
+        return card_two == 'A'
+
+    return False
 
 
 def can_split_pairs(card_one, card_two):
@@ -67,8 +106,11 @@ def can_split_pairs(card_one, card_two):
     :param card_one, card_two: str - cards dealt.
     :return: bool - can the hand be split into two pairs? (i.e. cards are of the same value).
     """
-
-    pass
+    return (
+        card_one == card_two
+        or (card_one == 'K' and card_two == 'Q')
+        or (card_one == 'Q' and card_two == 'K')
+    )
 
 
 def can_double_down(card_one, card_two):
@@ -77,5 +119,7 @@ def can_double_down(card_one, card_two):
     :param card_one, card_two: str - first and second cards in hand.
     :return: bool - can the hand can be doubled down? (i.e. totals 9, 10 or 11 points).
     """
+    if card_one == 'A' and card_two == 'A':
+        return False
 
-    pass
+    return value_of_card(card_one) + value_of_card(card_two) <= 11
