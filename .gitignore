@@ -4,3 +4,5 @@
 # Perl 6
 .precomp
 
+# Python
+__pycache__
